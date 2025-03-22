@@ -1,0 +1,54 @@
+﻿@using ProjectMVC.Enums
+@model UserModel
+@{
+	ViewData["Title"] = "Criar Usuário";
+}
+<link href="~/css/form.css" rel="stylesheet" />
+
+<h1 class="text-center"> Cadastro de Usuário</h1>
+
+<div class="container">
+	<div class="form-container">
+		<form asp-controller="User" asp-action="Create" method="post" class="row g-3">
+			<div class="mb-2 col-12">
+				<label for="nome" class="form-label">Nome</label>
+				<input type="text" asp-for="nome" class="form-control" id="nome" placeholder="Nome">
+				@Html.ValidationMessageFor(x => x.nome)
+			</div>
+
+			<div class="mb-2 col-12">
+				<label for="email" class="form-label">E-mail</label>
+				<input type="text" asp-for="email" class="form-control" id="email" placeholder="exemplo@teste.com">
+				@Html.ValidationMessageFor(x => x.email)
+			</div>
+
+			<div class="mb-2 col-md-6">
+				<label for="login" class="form-label">Login</label>
+				<input type="text" asp-for="login" class="form-control" id="login" placeholder="Login">
+				@Html.ValidationMessageFor(x => x.login)
+			</div>
+
+			<div class="mb-2 col-md-6">
+				<label for="login" class="form-label">Perfil</label>
+
+					<select  class="form-control" asp-for="perfil">
+						<option value="0">Selecionar</option>
+						<option value="@PerfilEnum.Admin">Administrador</option>
+						<option value="@PerfilEnum.Padrao">Padrão</option>
+					</select>
+
+			</div>
+
+			<div class="mb-2 col-md-6">
+				<label for="login" class="form-label">Senha</label>
+				<input type="password" asp-for="senha" class="form-control" id="senha" placeholder="***">
+				@Html.ValidationMessageFor(x => x.senha)
+			</div>
+
+			<div class="d-grid gap-2 col-12">
+				<button type="submit" class="btn btn-primary btn-block">Salvar</button>
+				<a class="btn btn-secondary btn-block" asp-controller="User" asp-action="index">Voltar</a>
+			</div>
+		</form>
+	</div>
+</div>

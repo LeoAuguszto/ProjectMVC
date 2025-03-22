@@ -1,0 +1,92 @@
+﻿@model List<UserModel>
+@{
+	ViewData["Title"] = "Usuário";
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+<script src="~/js/modal.js" defer></script>
+
+@if(TempData["MensagemSucesso"] !=null)
+{
+	<div class="alert alert-success" role="alert">
+		<button type="button" class="btn btn-success btn-sm close-alert" aria-label="close">x</button>
+		@TempData["MensagemSucesso"]
+	</div>
+
+}
+@if (TempData["MensagemErro"] != null)
+{
+	<div class="alert alert-danger" role="alert">
+		<button type="button" class=" btn btn-danger btn-sm close-alert" arial-label="close">x</button>
+		@TempData["MensagemErro"]
+	</div>
+}
+
+
+
+<h1 class="text-center">Usuários</h1>
+
+<table class="table" id="table-usuario">
+	<thead class="table-dark">
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Login</th>
+			<th scope="col">E-mail</th>
+			<th scope="col">Data de Cadastro</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any())
+		{
+			foreach (UserModel item in Model)
+			{
+				<tr>
+					<th scope="row">@item.id</th>
+					<td>@item.nome</td>
+					<td>@item.login</td>
+					<td>@item.email</td>
+					<td>@item.dataCadastro</td>
+					<td>
+						<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+							<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+								<button class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.id">Apagar</button>
+								<a role="button" class="btn btn-primary" asp-controller="Contact" asp-action="Edit" asp-route-id="@item.id">Editar</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
+<div class="">
+	<a class="btn btn-success" role="button" asp-controller="User" asp-action="Create">Adicionar</a>
+</div>
+@if (Model != null && Model.Any())
+{
+	@foreach (var item in Model)
+	{
+		<div id="deleteModal-@item.id" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Apagar Contato</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+					</div>
+					<div class="modal-body">
+						<p>Tem certeza que deseja apagar o contato "@item.nome"?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<a asp-controller="Contact" asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Apagar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+}
+
+
+

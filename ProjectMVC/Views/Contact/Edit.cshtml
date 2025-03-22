@@ -1,0 +1,65 @@
+﻿@model ContactModel
+@{
+	ViewData["Title"] = "Editar contato";
+}
+<link href="~/css/form.css" rel="stylesheet" />
+
+<h1 class="text-center"> Editar Contatos</h1>
+
+<div class="container">
+	<div class="form-container">
+		<form asp-controller="Contact" asp-action="Alter" method="post" class="row g-3">
+			<input type="hidden" asp-for="id"/>
+			<div class="mb-2 col-12">
+				<label for="nome" class="form-label">Nome</label>
+				<input type="text" asp-for="name" class="form-control" id="nome" placeholder="Nome">
+				@Html.ValidationMessageFor(x => x.name)
+			</div>
+			<div class="mb-2 col-12">
+				<label for="email" class="form-label">E-mail</label>
+				<input type="text" asp-for="email" class="form-control" id="email" placeholder="exemplo@teste.com">
+				@Html.ValidationMessageFor(x => x.email)
+			</div>
+			<div class="mb-2 col-md-6">
+				<label for="telefone" class="form-label">Telefone</label>
+				<input type="number" asp-for="phone" class="form-control" id="telefone" placeholder="Telefone">
+				@Html.ValidationMessageFor(x => x.phone)
+			</div>
+			<div class="col-md-6">
+				<label for="sexo" class="form-label">Sexo</label>
+				<div class="d-flex">
+					<div class="form-check me-3">
+						<input class="form-check-input" asp-for="gender" type="radio" id="inlineRadio1" value="Homem">
+						<label class="form-check-label" for="inlineRadio1">Homem</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" asp-for="gender" type="radio" id="inlineRadio2" value="Mulher">
+						<label class="form-check-label" for="inlineRadio2">Mulher</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<label for="uf" class="form-label">UF</label>
+				<select class="form-select" asp-for="uf">
+					<option value="">Selecionar</option>
+					<option value="SP">SP</option>
+					<option value="RJ">RJ</option>
+					<option value="MG">MG</option>
+				</select>
+			</div>
+			<div class="col-md-6">
+				<label for="cidade" class="form-label">Cidade</label>
+				<select class="form-select" asp-for="city">
+					<option value="">Selecionar</option>
+					<option value="Sorocaba">Sorocaba</option>
+					<option value="Votorantim">Votorantim</option>
+					<option value="São Paulo">São Paulo</option>
+				</select>
+			</div>
+			<div class="d-grid gap-2 col-12">
+				<button type="submit" class="btn btn-primary btn-block">Salvar</button>
+				<a class="btn btn-secondary btn-block" asp-controller="Contact" asp-action="index">Voltar</a>
+			</div>
+		</form>
+	</div>
+</div>
