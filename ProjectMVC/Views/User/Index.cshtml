@@ -44,7 +44,7 @@
 			{
 				<tr>
 					<th scope="row">@item.id</th>
-					<td>@item.nome</td>
+					<td>@item.name</td>
 					<td>@item.login</td>
 					<td>@item.email</td>
 					<td>@item.dataCadastro</td>
@@ -52,7 +52,7 @@
 						<div class="btn-group" role="group" aria-label="Basic mixed styles example">
 							<div class="btn-group" role="group" aria-label="Basic mixed styles example">
 								<button class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#deleteModal-@item.id">Apagar</button>
-								<a role="button" class="btn btn-primary" asp-controller="Contact" asp-action="Edit" asp-route-id="@item.id">Editar</a>
+								<a role="button" class="btn btn-primary" asp-controller="User" asp-action="Edit" asp-route-id="@item.id">Editar</a>
 							</div>
 						</div>
 					</td>
@@ -76,11 +76,11 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
 					</div>
 					<div class="modal-body">
-						<p>Tem certeza que deseja apagar o contato "@item.nome"?</p>
+						<p>Tem certeza que deseja apagar o usuário "@item.name"?</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-						<a asp-controller="Contact" asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Apagar</a>
+						<a asp-controller="User" asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">Apagar</a>
 					</div>
 				</div>
 			</div>

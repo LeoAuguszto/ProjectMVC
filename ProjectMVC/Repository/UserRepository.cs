@@ -12,7 +12,10 @@ namespace ProjectMVC.Repository
         {
             _databaseContext = dbContext;
         }
-
+        public UserModel BuscarLogin(string login)
+        {
+           return _databaseContext.Users.FirstOrDefault(x => x.login.ToUpper() == login.ToUpper());
+        }
         public UserModel Adicionar(UserModel usuario)
         {
             usuario.dataCadastro = DateTime.Now;
@@ -26,7 +29,7 @@ namespace ProjectMVC.Repository
             UserModel dbUser = ListarId(usuario.id);
             if (dbUser == null) throw new Exception("Houve um erro ao atualizado o registro, {registro Nulo!}");
 
-            dbUser.nome = usuario.nome;
+            dbUser.name = usuario.name;
             dbUser.email = usuario.email;
             dbUser.login = usuario.login;
             dbUser.perfil = usuario.perfil;
@@ -46,6 +49,7 @@ namespace ProjectMVC.Repository
         public UserModel ListarId(int id)
         {
             return _databaseContext.Users.FirstOrDefault(x => x.id == id);
+      
         }
 
         public bool RemoveRegistro(int id)

@@ -7,7 +7,7 @@ namespace ProjectMVC.Models
     {
         public int id { get; set; }
         [Required(ErrorMessage = "Digite o nome do usuário!")]
-        public required string nome { get; set; }
+        public required string name { get; set; }
         [Required(ErrorMessage = "Digite o login do usuário!")]
         public required string login { get; set; }
 
@@ -20,6 +20,11 @@ namespace ProjectMVC.Models
         public required string senha { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime? dataAtualizacao { get; set; }
+
+        public bool SenhaValida (string Senha)
+        {
+            return Senha == this.senha;
+        }
 
     }
 }
