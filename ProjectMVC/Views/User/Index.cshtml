@@ -32,6 +32,7 @@
 			<th scope="col">#</th>
 			<th scope="col">Nome</th>
 			<th scope="col">Login</th>
+			<th scope="col">Perfil</th>
 			<th scope="col">E-mail</th>
 			<th scope="col">Data de Cadastro</th>
 			<th scope="col"></th>
@@ -46,6 +47,7 @@
 					<th scope="row">@item.id</th>
 					<td>@item.name</td>
 					<td>@item.login</td>
+					<td>@(item.perfil == ProjectMVC.Enums.PerfilEnum.Admin ? "Admin" : "Padrão ")</td>
 					<td>@item.email</td>
 					<td>@item.dataCadastro</td>
 					<td>

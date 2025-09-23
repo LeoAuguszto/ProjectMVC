@@ -23,6 +23,12 @@ public class LoginController : Controller
             return View();
         }
 
+        public IActionResult Exit()
+        {
+            _session.RemoveSession();
+            return RedirectToAction("Index", "Login");
+        }
+
         [HttpPost]
         public IActionResult Logar(LoginModel loginModel)
         {
